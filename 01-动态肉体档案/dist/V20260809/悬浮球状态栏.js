@@ -4349,6 +4349,40 @@
             + '</div>';
         html += secBlock('⚡ 衍生属性', derHtml);
         // 注: "当前形态"栏已移除 — 顶部头像旁已显示形态名, 由能力面板激活按钮统一管理
+        // === 动态肉体档案（独立补丁，可整段删除不影响其他功能）===
+        try {
+            var archive = p.动态肉体档案 || {};
+            var archSections = [
+                {key:'肉体外观', icon:'💪'},
+                {key:'衣物服饰', icon:'👕'},
+                {key:'情趣配饰', icon:'💎'},
+                {key:'性器状态', icon:'🔥'}
+            ];
+            archSections.forEach(function(sec) {
+                var sub = archive[sec.key] || {};
+                var keys = Object.keys(sub);
+                if (!editMode && keys.length === 0) return;
+                var body = '<div class="sam-grid-2">';
+                keys.forEach(function(k) {
+                    var v = safeStr(sub[k]);
+                    var path = '主角.动态肉体档案.' + sec.key + '.' + k;
+                    var valCell = editMode ? editInput(path, v, 'text') : esc(v);
+                    var delBtn = editMode
+                        ? '<button type="button" class="sam-fc-del-btn" data-del-path="'+esc(path)+'">✕</button>'
+                        : '';
+                    body += '<div class="sam-row"><span class="k">'+esc(k)+'</span>'
+                          + '<span class="v">'+valCell+delBtn+'</span></div>';
+                });
+                body += '</div>';
+                if (editMode) {
+                    body += '<button type="button" class="sam-add-kv-btn" '
+                          + 'data-add-path="主角.动态肉体档案.'+sec.key+'">+ 添加槽位</button>';
+                }
+                html += secBlock(sec.icon + ' ' + sec.key, body);
+            });
+        } catch (e) {
+            console.warn('[主神终端] 动态肉体档案渲染失败:', e);
+        }
         return html;
     }
 
