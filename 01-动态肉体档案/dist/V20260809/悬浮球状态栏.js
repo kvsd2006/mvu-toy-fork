@@ -3061,6 +3061,26 @@
                 }
             });
         });
+        
+        // ★ 动态肉体档案: 添加槽位按钮(编辑模式)
+        $panel.off("click.samAddKv").on("click.samAddKv", ".sam-add-kv-btn[data-add-path]", function(e) {
+            e.stopPropagation();
+            var basePath = $(this).attr("data-add-path") || "";
+            if (!basePath) return;
+            var newKey = window.prompt("新槽位名（key）：");
+            if (!newKey) return;
+            var val = window.prompt("初始值（可留空）：") || "";
+            var ok = writeBackMvu(function(statData) {
+                _.set(statData, basePath + "." + newKey, val);
+            });
+            if (ok) {
+                samToast("success", "已添加: "+newKey);
+                renderAll();
+            } else {
+                samToast("error", "添加失败: MVU写回不可用");
+            }
+        });
+
         // ★ 选择世界按钮(顶栏, 仅在主神空间且非战斗时渲染): 点击发送【选择世界】到输入框
         $panel.off('click.samChooseWorld').on('click.samChooseWorld', '[data-choose-world]', function(e) {
             e.stopPropagation();
