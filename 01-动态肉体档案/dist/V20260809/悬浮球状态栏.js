@@ -4361,8 +4361,10 @@
             archSections.forEach(function(sec) {
                 var sub = archive[sec.key] || {};
                 var keys = Object.keys(sub);
-                if (!editMode && keys.length === 0) return;
                 var body = '<div class="sam-grid-2">';
+                if (keys.length === 0) {
+                    body += '<div class="sam-empty">[空]</div>';
+                }
                 keys.forEach(function(k) {
                     var v = safeStr(sub[k]);
                     var path = '主角.动态肉体档案.' + sec.key + '.' + k;
