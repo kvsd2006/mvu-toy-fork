@@ -56,7 +56,7 @@
 ## 状态
 
 - **当前版本**：v0.1.0（补丁已应用到 dist/JS；3 patches 文件已落盘；待部署到角色卡实测）
-- **设计文档**：`docs/设计文档.md`（待补，brainstorming 流程走完后写）
+- **设计文档**：[`docs/设计文档.md`](./docs/设计文档.md)（完整 spec 见外部 `docs/superpowers/specs/2026-08-11-动态肉体档案-design.md`）
 - **首次实现 commit**：待定
 
 ## 上游关系
