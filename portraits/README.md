@@ -14,6 +14,23 @@ https://cdn.jsdelivr.net/gh/kvsd2006/mvu-toy-fork@main/portraits/<文件名>?v=1
 - 修改图片后把 `?v=1` 递增（`?v=2`…）刷新 CDN 缓存；
 - 也可访问 `https://purge.jsdelivr.net/gh/kvsd2006/mvu-toy-fork@main/portraits/<文件名>` 手动强刷。
 
+## 按故事分子目录
+
+不同故事需要的头像可以各放一个子目录，URL 直接把子目录名接在 `portraits/` 后面即可：
+
+```
+https://cdn.jsdelivr.net/gh/kvsd2006/mvu-toy-fork@main/portraits/<故事名>/<文件名>?v=1
+```
+
+例：
+
+```
+portraits/lunhui-zhandou/protagonist.png
+https://cdn.jsdelivr.net/gh/kvsd2006/mvu-toy-fork@main/portraits/lunhui-zhandou/protagonist.png?v=1
+```
+
+目录名建议用英文/拼音短名（如 `lunhui-zhandou`），不要用空格和特殊字符；中文名能用，但 URL 会变成百分号编码，部分插件解析容易出问题。
+
 ## 引用示例
 
 在插件里填图片 URL 即可（Markdown 写法等价于插件的 URL 输入）：
