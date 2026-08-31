@@ -30,7 +30,7 @@
 
 | 文件 | 用途 |
 |---|---|
-| [`dist/V20260812/suspension-ball.js`](./dist/V20260812/suspension-ball.js) | 完整 fork JS（上游 V20260812 基线），通过 jsdelivr CDN 给角色卡 import |
+| [`dist/V20260831/suspension-ball.js`](./dist/V20260831/suspension-ball.js) | 完整 fork JS（基底 = 轮回战场 V3.5.1 卡内联脚本：上游 V20260829 + 商城交易改走「待播报记录」），通过 jsdelivr CDN 给角色卡 import |
 
 补丁具体位置：`renderInfoTab(sd)` 函数末尾（return html 之前）追加独立 `try/catch` secBlock，渲染 4 个 record 的 key-value 表格，支持编辑模式增删槽位。
 
@@ -39,7 +39,7 @@
 1. **应用卡内补丁**：按 `patches/01-zod-schema.md`、`patches/02-mvu-update-rules.md`、`patches/03-current-variables-ejs.md` 的说明，把 3 处补丁粘到角色卡对应位置
 2. **改 import URL**：找到角色卡 `extensions.tavern_helper.scripts[]` 里 `name: "悬浮球状态栏"` 的脚本，把 `content` 改为：
    ```
-   import 'https://testingcf.jsdelivr.net/gh/kvsd2006/mvu-toy-fork@main/01-body-archive/dist/V20260812/suspension-ball.js?v=1'
+   import 'https://testingcf.jsdelivr.net/gh/kvsd2006/mvu-toy-fork@main/01-body-archive/dist/V20260831/suspension-ball.js?v=1'
    ```
 3. **验证**：在 SillyTavern 加载角色卡 → 悬浮球 → 信息 Tab → 看到「动态肉体档案」区块（首次为空，编辑模式下手动加槽位，或剧情推进后 AI 自动填入）
 
@@ -47,7 +47,7 @@
 
 | 场景 | 操作 |
 |---|---|
-| 改 UI 渲染 | 改 `dist/V20260812/suspension-ball.js` → commit → push → 卡内 `?v=N` 递增 |
+| 改 UI 渲染 | 改 `dist/V20260831/suspension-ball.js` → commit → push → 卡内 `?v=N` 递增 |
 | 原作者发新悬浮球 JS | 拉上游新代码 → 按 `patches/04` cherry-pick 到新版本 → push → `?v=N` 递增 |
 | 原作者发新卡（V3.3 等） | 重新粘 3 处卡内补丁（位置锚点见 `patches/`）；CDN URL 不动，悬浮球自动用 fork 版 |
 
@@ -55,7 +55,7 @@
 
 ## 状态
 
-- **当前版本**：v0.2.0（上游基线 V20260809 → V20260812；2026-08-13 完成 V3.2.6 卡内三补丁 + fork URL 部署）
+- **当前版本**：v0.3.0（基底 = V3.5.1 内联脚本：上游 V20260829 + 商城交易改走「待播报记录」；2026-08-31 完成 V3.5.1 卡内三补丁 + V20260831 fork URL 部署）
 - **设计文档**：[`docs/设计文档.md`](./docs/设计文档.md)（完整 spec 见外部 `docs/superpowers/specs/2026-08-11-动态肉体档案-design.md`）
 - **首次实现 commit**：待定
 
